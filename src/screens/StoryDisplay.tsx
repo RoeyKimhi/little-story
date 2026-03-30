@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -61,8 +61,11 @@ const MOCK_STORY: StoryData = {
 
 const StoryDisplay = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  const [story] = useState<StoryData>(MOCK_STORY);
+  const [story] = useState<StoryData>(
+    (location.state?.story as StoryData) || MOCK_STORY,
+  );
 
   const currentPage = story.pages[currentPageIndex];
   const totalPages = story.pages.length;
@@ -89,7 +92,9 @@ const StoryDisplay = () => {
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold">{story.title}</h1>
-          <p className="mt-2 text-lg text-muted-foreground">{story.coverText}</p>
+          <p className="mt-2 text-lg text-muted-foreground">
+            {story.coverText}
+          </p>
         </div>
 
         {/* Main Content */}

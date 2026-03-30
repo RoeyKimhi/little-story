@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CharacterDetails from "@/components/story-form/CharacterDetails";
 import ThemeSelector from "@/components/story-form/ThemeSelector";
+import { useGenerateBook } from "@/hooks/useGenerateBook";
 
 interface StoryFormData {
   childName: string;
@@ -15,7 +15,7 @@ interface StoryFormData {
 
 const StoryGenerationForm = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const { mutate: generateBook, isPending: isLoading } = useGenerateBook();
   const {
     register,
     handleSubmit,
@@ -36,23 +36,25 @@ const StoryGenerationForm = () => {
     ) {
       return;
     }
-    
-    setIsLoading(true);
-    
-    // Simulate 2-3 minute loading (for demo purposes, using 2 seconds)
-    setTimeout(() => {
-      console.log("Form Data:", {
+
+    generateBook(
+      {
         childName: data.childName,
         childAge: data.childAge,
         childGender: data.childGender,
         theme: data.theme,
         image: data.image[0],
-      });
-      
-      // Navigate to story display
-      navigate("/story");
-      setIsLoading(false);
-    }, 2000);
+      },
+      {
+        onSuccess: (storyData) => {
+          console.log("Story generated successfully:", storyData);
+          navigate("/story", { state: { story: storyData } });
+        },
+        onError: (error) => {
+          console.error("Error generating story:", error);
+        },
+      },
+    );
   };
 
   return (
