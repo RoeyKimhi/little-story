@@ -5,7 +5,7 @@ const NavBar = () => {
     <header className="w-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 text-white shadow-lg shadow-violet-300/40">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">📖</span>
+          <img src="/logo.svg" alt="LittleStory" className="h-8 w-8" />
           <span className="text-lg font-black tracking-wide">LittleStory</span>
         </div>
 
