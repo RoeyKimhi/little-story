@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import CharacterDetails from "@/components/story-form/CharacterDetails";
 import ThemeSelector from "@/components/story-form/ThemeSelector";
@@ -12,22 +14,45 @@ interface StoryFormData {
 }
 
 const StoryGenerationForm = () => {
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<StoryFormData>({
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm<StoryFormData>({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
   const onSubmit = (data: StoryFormData) => {
-    if (!data.childName || !data.childAge || !data.childGender || !data.theme || !data.image?.[0]) {
+    if (
+      !data.childName ||
+      !data.childAge ||
+      !data.childGender ||
+      !data.theme ||
+      !data.image?.[0]
+    ) {
       return;
     }
-    console.log("Form Data:", {
-      childName: data.childName,
-      childAge: data.childAge,
-      childGender: data.childGender,
-      theme: data.theme,
-      image: data.image[0],
-    });
+    
+    setIsLoading(true);
+    
+    // Simulate 2-3 minute loading (for demo purposes, using 2 seconds)
+    setTimeout(() => {
+      console.log("Form Data:", {
+        childName: data.childName,
+        childAge: data.childAge,
+        childGender: data.childGender,
+        theme: data.theme,
+        image: data.image[0],
+      });
+      
+      // Navigate to story display
+      navigate("/story");
+      setIsLoading(false);
+    }, 2000);
   };
 
   return (
@@ -55,10 +80,10 @@ const StoryGenerationForm = () => {
         <Button
           type="submit"
           size="lg"
-          disabled={!isValid}
+          disabled={!isValid || isLoading}
           className="rounded-full bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-6 text-lg font-semibold text-white hover:from-violet-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Create Story ✨
+          {isLoading ? "Generating Your Story... ✨" : "Create Story ✨"}
         </Button>
       </div>
     </form>

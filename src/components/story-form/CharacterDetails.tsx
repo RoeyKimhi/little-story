@@ -1,5 +1,9 @@
 import { Upload } from "lucide-react";
-import type { UseFormRegister, UseFormWatch, FieldErrors } from "react-hook-form";
+import type {
+  UseFormRegister,
+  UseFormWatch,
+  FieldErrors,
+} from "react-hook-form";
 
 interface StoryFormData {
   childName: string;
@@ -15,7 +19,11 @@ interface CharacterDetailsProps {
   errors: FieldErrors<StoryFormData>;
 }
 
-const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) => {
+const CharacterDetails = ({
+  register,
+  watch,
+  errors,
+}: CharacterDetailsProps) => {
   const imageFile = watch("image");
   const previewUrl = imageFile?.[0] ? URL.createObjectURL(imageFile[0]) : null;
 
@@ -29,7 +37,9 @@ const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) =>
         {/* Photo Upload */}
         <div>
           <label className="block text-sm font-medium mb-2">Upload Photo</label>
-          <label className={`flex h-64 flex-col items-center justify-center rounded-lg border-2 border-dashed cursor-pointer transition ${errors.image ? 'border-red-500 bg-red-50' : 'border-border bg-muted/30 hover:bg-muted/50'}`}>
+          <label
+            className={`flex h-64 flex-col items-center justify-center rounded-lg border-2 border-dashed cursor-pointer transition ${errors.image ? "border-red-500 bg-red-50" : "border-border bg-muted/30 hover:bg-muted/50"}`}
+          >
             {previewUrl ? (
               <img
                 src={previewUrl}
@@ -54,7 +64,9 @@ const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) =>
               {...register("image", { required: "Photo is required" })}
             />
           </label>
-          {errors.image && <p className="mt-1 text-xs text-red-500">Photo is required</p>}
+          {errors.image && (
+            <p className="mt-1 text-xs text-red-500">Photo is required</p>
+          )}
         </div>
 
         {/* Character Details Form */}
@@ -67,10 +79,16 @@ const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) =>
             <input
               type="text"
               placeholder="Enter character name"
-              className={`w-full rounded-lg border bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.childName ? 'border-red-500 focus:ring-red-600' : 'border-border focus:ring-violet-600'}`}
-              {...register("childName", { required: "Character name is required" })}
+              className={`w-full rounded-lg border bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.childName ? "border-red-500 focus:ring-red-600" : "border-border focus:ring-violet-600"}`}
+              {...register("childName", {
+                required: "Character name is required",
+              })}
             />
-            {errors.childName && <p className="mt-1 text-xs text-red-500">Character name is required</p>}
+            {errors.childName && (
+              <p className="mt-1 text-xs text-red-500">
+                Character name is required
+              </p>
+            )}
           </div>
 
           {/* Age */}
@@ -81,10 +99,12 @@ const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) =>
             <input
               type="number"
               placeholder="Enter age"
-              className={`w-full rounded-lg border bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.childAge ? 'border-red-500 focus:ring-red-600' : 'border-border focus:ring-violet-600'}`}
+              className={`w-full rounded-lg border bg-background px-4 py-2 text-sm focus:outline-none focus:ring-2 ${errors.childAge ? "border-red-500 focus:ring-red-600" : "border-border focus:ring-violet-600"}`}
               {...register("childAge", { required: "Age is required" })}
             />
-            {errors.childAge && <p className="mt-1 text-xs text-red-500">Age is required</p>}
+            {errors.childAge && (
+              <p className="mt-1 text-xs text-red-500">Age is required</p>
+            )}
           </div>
 
           {/* Gender */}
@@ -102,13 +122,17 @@ const CharacterDetails = ({ register, watch, errors }: CharacterDetailsProps) =>
                     type="radio"
                     value={option}
                     className="hidden"
-                    {...register("childGender", { required: "Gender is required" })}
+                    {...register("childGender", {
+                      required: "Gender is required",
+                    })}
                   />
                   <span className="text-sm font-medium">{option}</span>
                 </label>
               ))}
             </div>
-            {errors.childGender && <p className="mt-1 text-xs text-red-500">Gender is required</p>}
+            {errors.childGender && (
+              <p className="mt-1 text-xs text-red-500">Gender is required</p>
+            )}
           </div>
         </div>
       </div>

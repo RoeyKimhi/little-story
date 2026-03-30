@@ -1,4 +1,8 @@
-import type { UseFormRegister, UseFormWatch, FieldErrors } from "react-hook-form";
+import type {
+  UseFormRegister,
+  UseFormWatch,
+  FieldErrors,
+} from "react-hook-form";
 import {
   Zap,
   Handshake,
@@ -133,7 +137,9 @@ const ThemeSelector = ({ register, watch, errors }: ThemeSelectorProps) => {
           </label>
         ))}
       </div>
-      {errors.theme && <p className="mt-2 text-xs text-red-500">Theme is required</p>}
+      {errors.theme && (
+        <p className="mt-2 text-xs text-red-500">Theme is required</p>
+      )}
     </div>
   );
 };
