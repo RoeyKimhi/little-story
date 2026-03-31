@@ -1,16 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="w-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 text-white shadow-lg shadow-violet-300/40">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-3">
+        <div className="flex cursor-pointer items-center gap-3" onClick={() => navigate("/")}>
           <img src="/logo.svg" alt="LittleStory" className="h-8 w-8" />
           <span className="text-lg font-black tracking-wide">LittleStory</span>
         </div>
 
         <div className="flex items-center gap-3">
           <Button
+            onClick={() => navigate("/create")}
             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-violet-600 shadow-sm hover:bg-white/90 focus-visible:ring-white/80"
             variant="default"
           >
