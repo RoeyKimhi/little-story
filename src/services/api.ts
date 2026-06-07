@@ -1,18 +1,18 @@
 import axios from "axios";
+import { AUTH_TOKEN_KEY } from "@/types/auth";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 export const apiClient = axios.create({
   baseURL: apiUrl,
-  timeout: 300000, // 5 minutes to allow for long-running API calls
+  // Sequential FAL (6 images) + GPT can exceed 5 minutes.
+  timeout: 600_000,
 });
 
-// You can add request/response interceptors here in the future
-// For example, adding auth tokens:
-// apiClient.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("authToken");
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});

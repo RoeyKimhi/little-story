@@ -36,7 +36,17 @@ export const generateBook = async (
   const response = await apiClient.post<StoryResponse>(
     "/api/ai/generate-book",
     formData,
+    {
+      // Sequential FAL image generation can take several minutes.
+      timeout: 600_000,
+    },
   );
 
-  return response.data;
+  const story = response.data;
+
+  if (!story?.pages?.length) {
+    throw new Error("השרת החזיר ספר ללא עמודים");
+  }
+
+  return story;
 };

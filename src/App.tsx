@@ -3,6 +3,10 @@ import AppLayout from "./features/layout/AppLayout";
 import Home from "./screens/Home";
 import StoryGenerationForm from "./screens/StoryGenerationForm";
 import StoryDisplay from "./screens/StoryDisplay";
+import StoryBook from "./screens/StoryBook";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import { GuestRoute, ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
@@ -10,9 +14,16 @@ function App() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="/create" element={<StoryGenerationForm />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/create" element={<StoryGenerationForm />} />
+            <Route path="/story" element={<StoryDisplay />} />
+            <Route path="/book" element={<StoryBook />} />
+          </Route>
+          <Route element={<GuestRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Route>
-        <Route path="/story" element={<StoryDisplay />} />
       </Routes>
     </BrowserRouter>
   );
