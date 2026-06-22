@@ -128,3 +128,225 @@
     @apply font-sans;
     }
 }
+
+@keyframes theme-wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes theme-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes theme-sparkle-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes theme-bubble-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-28px);
+    opacity: 0;
+  }
+}
+
+@keyframes theme-heart-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes theme-wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.theme-wave-layer {
+  animation: theme-wave-drift 5s linear infinite;
+}
+
+.theme-wave-layer-slow {
+  animation-duration: 7s;
+}
+
+.theme-wave-layer-fast {
+  animation-duration: 3.5s;
+}
+
+.theme-float,
+.theme-fish,
+.theme-rocket,
+.theme-dino,
+.theme-crown,
+.theme-hero,
+.theme-ship,
+.theme-wand,
+.theme-compass,
+.theme-bird {
+  animation: theme-float 3s ease-in-out infinite;
+}
+
+.theme-float-delayed,
+.theme-tree-delayed,
+.theme-bubble-delayed,
+.theme-leaf-delayed,
+.theme-heart-delayed,
+.theme-wave-hand-delayed {
+  animation-delay: 0.8s;
+}
+
+.theme-sparkle {
+  animation: theme-sparkle-pulse 2.2s ease-in-out infinite;
+}
+
+.theme-bubble {
+  animation: theme-bubble-rise 3s ease-in infinite;
+}
+
+.theme-heart {
+  animation: theme-heart-beat 1.8s ease-in-out infinite;
+}
+
+.theme-wave-hand {
+  display: inline-block;
+  animation: theme-wiggle 1.2s ease-in-out infinite;
+}
+
+.theme-sun {
+  animation: theme-sparkle-pulse 4s ease-in-out infinite;
+}
+
+.theme-scene-selected .theme-wave-layer,
+.theme-scene-selected .theme-float,
+.theme-scene-selected .theme-sparkle,
+.group:hover .theme-wave-layer,
+.group:hover .theme-float,
+.group:hover .theme-sparkle {
+  animation-duration: 2.5s;
+}
+
+.group:hover .theme-wave-layer {
+  animation-duration: 4s;
+}
+
+@keyframes theme-shimmer-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-16deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-16deg);
+  }
+}
+
+@keyframes theme-card-sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+@keyframes theme-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.theme-card-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%
+  );
+  animation: theme-shimmer-sweep 2.4s ease-in-out infinite;
+}
+
+.theme-card-glow {
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(167, 139, 250, 0.45),
+    rgba(244, 114, 182, 0.2) 45%,
+    transparent 70%
+  );
+  animation: theme-glow-breathe 2.5s ease-in-out infinite;
+}
+
+.theme-card-sparkle {
+  animation: theme-card-sparkle-twinkle 1.8s ease-in-out infinite;
+}
+
+.theme-card-sparkle-star {
+  animation: theme-card-sparkle-twinkle 2.2s ease-in-out infinite;
+}
+
+.theme-card-selected {
+  animation: theme-card-selected-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes theme-card-selected-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 48px rgba(139, 92, 246, 0.45),
+      0 0 0 1px rgba(167, 139, 250, 0.45),
+      0 0 24px rgba(167, 139, 250, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 16px 56px rgba(139, 92, 246, 0.65),
+      0 0 0 1px rgba(167, 139, 250, 0.7),
+      0 0 40px rgba(244, 114, 182, 0.45);
+  }
+}
+
+.group:hover .theme-sparkle,
+.theme-scene-selected .theme-sparkle {
+  animation-duration: 1.4s;
+}
+
+.group:hover .theme-card-sparkles .theme-card-sparkle,
+.theme-card-selected .theme-card-sparkles .theme-card-sparkle {
+  animation-duration: 1.2s;
+}

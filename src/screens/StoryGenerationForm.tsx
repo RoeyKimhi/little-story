@@ -5,16 +5,10 @@ import { BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CharacterDetails from "@/components/story-form/CharacterDetails";
 import ThemeSelector from "@/components/story-form/ThemeSelector";
+import { resolveStoryTheme } from "@/data/storyThemes";
 import { loadCurrentStory } from "@/lib/storySession";
 import type { CreateStoryLocationState } from "@/types/createStory";
-
-interface StoryFormData {
-  childName: string;
-  childAge: string;
-  childGender: string;
-  theme: string;
-  image: FileList;
-}
+import type { StoryFormData } from "@/types/storyForm";
 
 const StoryGenerationForm = () => {
   const navigate = useNavigate();
@@ -29,6 +23,9 @@ const StoryGenerationForm = () => {
   } = useForm<StoryFormData>({
     mode: "onChange",
     reValidateMode: "onChange",
+    defaultValues: {
+      customTheme: "",
+    },
   });
 
   useEffect(() => {
@@ -43,11 +40,13 @@ const StoryGenerationForm = () => {
   }, [location.state, navigate]);
 
   const onSubmit = (data: StoryFormData) => {
+    const resolvedTheme = resolveStoryTheme(data.theme, data.customTheme);
+
     if (
       !data.childName ||
       !data.childAge ||
       !data.childGender ||
-      !data.theme ||
+      !resolvedTheme ||
       !data.image?.[0]
     ) {
       return;
@@ -61,7 +60,7 @@ const StoryGenerationForm = () => {
           childName: data.childName,
           childAge: data.childAge,
           childGender: data.childGender,
-          theme: data.theme,
+          theme: resolvedTheme,
           image: data.image[0],
         },
       },
