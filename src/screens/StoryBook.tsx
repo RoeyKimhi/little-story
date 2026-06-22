@@ -14,7 +14,7 @@ const StoryBook = () => {
   const story = toStoryBookData(storyResponse);
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col items-center py-4">
+    <div className="mx-auto flex w-full max-w-6xl flex-col items-center py-4">
       <img src="/logo.svg" alt="LittleStory" className="mb-4 h-12 w-12" />
       <h1 className="text-center text-3xl font-black text-violet-600">
         Your Story Book
@@ -26,7 +26,7 @@ const StoryBook = () => {
         {story.coverText}
       </p>
 
-      <section className="mt-8 w-full rounded-lg border border-border bg-card p-4 shadow-sm md:p-8">
+      <section className="-mx-4 mt-6 w-[calc(100%+2rem)] rounded-lg border border-border bg-card p-2 shadow-sm md:-mx-6 md:w-[calc(100%+3rem)] md:p-4">
         <StoryFlipBook story={story} />
       </section>
 

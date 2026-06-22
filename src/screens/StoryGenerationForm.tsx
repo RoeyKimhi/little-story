@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CharacterDetails from "@/components/story-form/CharacterDetails";
 import ThemeSelector from "@/components/story-form/ThemeSelector";
-import { useGenerateBook } from "@/hooks/useGenerateBook";
-import { getApiErrorMessage } from "@/lib/apiError";
-import { loadCurrentStory, saveCurrentStory } from "@/lib/storySession";
+import { loadCurrentStory } from "@/lib/storySession";
+import type { CreateStoryLocationState } from "@/types/createStory";
 
 interface StoryFormData {
   childName: string;
@@ -19,7 +18,7 @@ interface StoryFormData {
 
 const StoryGenerationForm = () => {
   const navigate = useNavigate();
-  const { mutate: generateBook, isPending: isLoading } = useGenerateBook();
+  const location = useLocation();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const savedStory = loadCurrentStory();
   const {
@@ -31,6 +30,17 @@ const StoryGenerationForm = () => {
     mode: "onChange",
     reValidateMode: "onChange",
   });
+
+  useEffect(() => {
+    const error = (location.state as CreateStoryLocationState | null)?.error;
+
+    if (!error) {
+      return;
+    }
+
+    setErrorMessage(error);
+    navigate("/create", { replace: true, state: {} });
+  }, [location.state, navigate]);
 
   const onSubmit = (data: StoryFormData) => {
     if (
@@ -45,25 +55,17 @@ const StoryGenerationForm = () => {
 
     setErrorMessage(null);
 
-    generateBook(
-      {
-        childName: data.childName,
-        childAge: data.childAge,
-        childGender: data.childGender,
-        theme: data.theme,
-        image: data.image[0],
-      },
-      {
-        onSuccess: (storyData) => {
-          saveCurrentStory(storyData);
-          navigate("/story", { state: { story: storyData } });
-        },
-        onError: (error) => {
-          console.error("Error generating story:", error);
-          setErrorMessage(getApiErrorMessage(error));
+    navigate("/creating", {
+      state: {
+        payload: {
+          childName: data.childName,
+          childAge: data.childAge,
+          childGender: data.childGender,
+          theme: data.theme,
+          image: data.image[0],
         },
       },
-    );
+    });
   };
 
   return (
@@ -75,7 +77,7 @@ const StoryGenerationForm = () => {
         </p>
       </div>
 
-      {savedStory && !isLoading && (
+      {savedStory && (
         <div
           dir="rtl"
           className="flex flex-col items-center gap-3 rounded-lg border border-violet-200 bg-violet-50 px-4 py-4 text-center"
@@ -115,23 +117,14 @@ const StoryGenerationForm = () => {
         </div>
       )}
 
-      {isLoading && (
-        <p
-          dir="rtl"
-          className="text-center text-sm text-muted-foreground"
-        >
-          יוצרים את הסיפור והאיורים — זה יכול לקחת כמה דקות. אל תסגרו את הדף.
-        </p>
-      )}
-
       <div className="flex justify-center">
         <Button
           type="submit"
           size="lg"
-          disabled={!isValid || isLoading}
+          disabled={!isValid}
           className="rounded-full bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-6 text-lg font-semibold text-white hover:from-violet-700 hover:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isLoading ? "Generating Your Story... ✨" : "Create Story ✨"}
+          Create Story ✨
         </Button>
       </div>
     </form>

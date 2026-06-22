@@ -1,35 +1,37 @@
 import HTMLFlipBook from "react-pageflip-rtl";
+import { useStoryPageDimensions } from "@/hooks/useStoryPageDimensions";
+import { storyPageHeight } from "@/lib/storyPageDimensions";
 import type { StoryBookData } from "@/types/storyBook";
 import FlipPage from "./FlipPage";
+import StoryText from "./StoryText";
 
 interface StoryFlipBookProps {
   story: StoryBookData;
-  width?: number;
-  height?: number;
 }
 
-const StoryFlipBook = ({
-  story,
-  width = 400,
-  height = 560,
-}: StoryFlipBookProps) => {
+const StoryFlipBook = ({ story }: StoryFlipBookProps) => {
+  const { containerRef, width, height } = useStoryPageDimensions();
+
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div
+      ref={containerRef}
+      className="flex w-full flex-col items-center gap-4"
+    >
       <HTMLFlipBook
         width={width}
         height={height}
         size="stretch"
         minWidth={280}
-        maxWidth={500}
-        minHeight={400}
-        maxHeight={700}
+        maxWidth={width}
+        minHeight={storyPageHeight(280)}
+        maxHeight={height}
         rtl={true}
         showCover={true}
         mobileScrollSupport={true}
         drawShadow={true}
         flippingTime={800}
-        usePortrait={true}
-        className="story-flip-book"
+        usePortrait={false}
+        className="story-flip-book w-full"
       >
         {/* Front cover */}
         <FlipPage hard>
@@ -61,11 +63,9 @@ const StoryFlipBook = ({
           <FlipPage key={`text-${page.pageNumber}`}>
             <div
               dir="rtl"
-              className="flex h-full w-full flex-col justify-center bg-white px-8 py-10"
+              className="flex h-full w-full flex-col justify-center bg-white px-6 py-8 md:px-10 md:py-10"
             >
-              <p className="text-right text-base leading-loose text-gray-800 md:text-lg">
-                {page.text}
-              </p>
+              <StoryText text={page.text} />
               <span className="mt-8 text-left text-xs text-muted-foreground">
                 {page.pageNumber}
               </span>
