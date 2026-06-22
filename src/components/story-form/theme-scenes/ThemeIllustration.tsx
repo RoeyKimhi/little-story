@@ -1,5 +1,37 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import {
+  BookSvg,
+  Bubble,
+  ButterflySvg,
+  CastleSvg,
+  Cloud,
+  CompassSvg,
+  CoralSvg,
+  CrownSvg,
+  DinoSvg,
+  FishSvg,
+  HeartSvg,
+  HeroSvg,
+  JellyfishSvg,
+  KidsSvg,
+  LightningSvg,
+  MountainSvg,
+  MushroomSvg,
+  PencilSvg,
+  PlanetSvg,
+  RocketSvg,
+  SceneBackdrop,
+  ShipSvg,
+  Sparkle,
+  StarDot,
+  Sun,
+  TreasureSvg,
+  TreeSvg,
+  VolcanoSvg,
+  WandSvg,
+  WaveLayers,
+} from "./themeSceneParts";
 
 interface ThemeIllustrationProps {
   themeId: string;
@@ -7,200 +39,205 @@ interface ThemeIllustrationProps {
   className?: string;
 }
 
-const Sparkle = ({
-  className,
-  style,
-}: {
-  className?: string;
-  style?: CSSProperties;
-}) => (
-  <span
-    className={cn("theme-sparkle absolute block h-1.5 w-1.5 rounded-full bg-white", className)}
-    style={style}
-  />
-);
-
 const OceanScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-cyan-300 to-blue-500" />
-    <div className="theme-sun absolute right-4 top-3 h-10 w-10 rounded-full bg-yellow-200 shadow-[0_0_24px_rgba(254,240,138,0.9)]" />
-    <svg
-      className="theme-wave-layer absolute bottom-8 left-0 h-16 w-[200%] text-cyan-200/80"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        d="M0,64 C150,100 350,20 600,64 C850,108 1050,28 1200,64 L1200,120 L0,120 Z"
-      />
-    </svg>
-    <svg
-      className="theme-wave-layer theme-wave-layer-slow absolute bottom-4 left-0 h-20 w-[200%] text-teal-300/90"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        d="M0,80 C200,40 400,100 600,72 C800,44 1000,96 1200,72 L1200,120 L0,120 Z"
-      />
-    </svg>
-    <svg
-      className="theme-wave-layer theme-wave-layer-fast absolute bottom-0 left-0 h-14 w-[200%] text-sky-400"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        d="M0,88 C180,56 360,104 600,80 C840,56 1020,104 1200,80 L1200,120 L0,120 Z"
-      />
-    </svg>
-    <div className="theme-bubble absolute bottom-10 left-8 h-3 w-3 rounded-full bg-white/50" />
-    <div className="theme-bubble theme-bubble-delayed absolute bottom-16 left-16 h-2 w-2 rounded-full bg-white/40" />
-    <div className="theme-fish absolute bottom-12 right-10 text-2xl opacity-80">🐠</div>
+    <SceneBackdrop className="bg-gradient-to-b from-sky-300 via-cyan-300 to-blue-600" />
+    <Sun className="right-5 top-3" />
+    <Cloud className="left-4 top-5 h-8 w-20" />
+    <Cloud className="right-16 top-10 h-6 w-16 opacity-70" />
+    <StarDot className="left-[20%] top-[18%] opacity-60" size={2} />
+    <StarDot className="left-[35%] top-[12%] opacity-50" size={2} />
+    <CoralSvg className="bottom-14 left-3 h-9 w-12" />
+    <CoralSvg className="bottom-12 right-4 h-7 w-10 opacity-80" />
+    <FishSvg className="bottom-16 right-[22%] h-8 w-14" />
+    <FishSvg className="bottom-20 left-[18%] h-6 w-10 scale-x-[-1] opacity-80" />
+    <JellyfishSvg className="bottom-24 right-[12%] h-12 w-9 opacity-75" />
+    <Bubble className="bottom-12 left-[28%]" />
+    <Bubble className="theme-bubble-delayed bottom-16 left-[38%]" size="sm" />
+    <Bubble className="bottom-20 left-[15%]" size="lg" />
+    <WaveLayers />
   </>
 );
 
 const ForestScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-emerald-200 to-green-600" />
-    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-green-700 to-emerald-500" />
-    <div className="theme-tree absolute bottom-6 left-4 h-16 w-10 rounded-t-full bg-green-800" />
-    <div className="theme-tree theme-tree-delayed absolute bottom-8 left-14 h-20 w-12 rounded-t-full bg-green-700" />
-    <div className="theme-tree absolute bottom-5 right-8 h-18 w-11 rounded-t-full bg-green-800" />
-    <div className="theme-leaf absolute left-1/3 top-8 text-lg">🍃</div>
-    <div className="theme-leaf theme-leaf-delayed absolute right-1/4 top-12 text-sm">🍃</div>
-    <div className="theme-bird absolute right-6 top-8 text-xl">🐦</div>
+    <SceneBackdrop className="bg-gradient-to-b from-sky-300 via-emerald-200 to-green-700" />
+    <Sun className="right-4 top-2 scale-90 opacity-90" />
+    <Cloud className="left-6 top-4 h-7 w-18" />
+    <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-green-800 via-green-600 to-transparent" />
+    <div className="absolute bottom-8 left-0 right-0 h-4 rounded-t-[100%] bg-green-500/80" />
+    <TreeSvg variant="left" className="bottom-4 left-1 h-20 w-14" />
+    <TreeSvg variant="center" className="bottom-2 left-1/2 h-24 w-16 -translate-x-1/2" />
+    <TreeSvg variant="right" className="bottom-5 right-2 h-[4.5rem] w-[3.25rem]" />
+    <MushroomSvg className="bottom-10 left-[38%] h-7 w-7" />
+    <MushroomSvg className="bottom-9 right-[30%] h-6 w-6 scale-90" />
+    <ButterflySvg className="left-[22%] top-[28%] h-7 w-9" />
+    <ButterflySvg className="theme-float-delayed right-[18%] top-[22%] h-6 w-8 opacity-80" />
+    <Sparkle className="left-[55%] top-[20%] bg-lime-100" />
   </>
 );
 
 const MagicalScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-br from-violet-400 via-purple-500 to-fuchsia-600" />
-    <Sparkle className="left-[18%] top-[22%]" style={{ animationDelay: "0s" }} />
-    <Sparkle className="left-[72%] top-[18%]" style={{ animationDelay: "0.6s" }} />
-    <Sparkle className="left-[48%] top-[38%]" style={{ animationDelay: "1.1s" }} />
-    <Sparkle className="left-[82%] top-[48%]" style={{ animationDelay: "0.3s" }} />
-    <div className="theme-wand absolute bottom-8 left-1/2 -translate-x-1/2 text-4xl">🪄</div>
-    <div className="theme-float absolute bottom-14 left-8 text-2xl">✨</div>
-    <div className="theme-float theme-float-delayed absolute bottom-16 right-8 text-xl">🌟</div>
+    <SceneBackdrop className="bg-gradient-to-br from-violet-500 via-purple-600 to-fuchsia-700" />
+    <div className="absolute left-1/2 top-4 h-16 w-16 -translate-x-1/2 rounded-full bg-violet-300/30 blur-xl" />
+    <StarDot className="left-[10%] top-[15%]" />
+    <StarDot className="left-[78%] top-[12%]" style={{ animationDelay: "0.4s" }} />
+    <StarDot className="left-[62%] top-[28%]" style={{ animationDelay: "0.9s" }} />
+    <Sparkle className="left-[20%] top-[24%]" />
+    <Sparkle className="left-[72%] top-[20%]" style={{ animationDelay: "0.5s" }} />
+    <Sparkle className="left-[48%] top-[36%]" style={{ animationDelay: "1s" }} />
+    <Sparkle className="left-[85%] top-[42%]" style={{ animationDelay: "0.2s" }} />
+    <WandSvg className="bottom-6 left-1/2 h-20 w-12 -translate-x-1/2" />
+    <div className="theme-magic-trail absolute bottom-16 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full bg-fuchsia-300/20 blur-md" />
   </>
 );
 
 const SpaceScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-indigo-950 via-violet-950 to-black" />
-    <Sparkle className="left-[12%] top-[20%] bg-white/90" style={{ animationDelay: "0.2s" }} />
-    <Sparkle className="left-[55%] top-[15%] bg-white/80" style={{ animationDelay: "0.8s" }} />
-    <Sparkle className="left-[78%] top-[35%] bg-white/70" style={{ animationDelay: "1.4s" }} />
-    <div className="theme-planet absolute right-6 top-6 h-10 w-10 rounded-full bg-gradient-to-br from-orange-300 to-rose-400 shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.35)]" />
-    <div className="theme-rocket absolute bottom-8 left-1/2 -translate-x-1/2 text-4xl">🚀</div>
-    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-indigo-500/30 to-transparent" />
+    <SceneBackdrop className="bg-gradient-to-b from-indigo-950 via-violet-950 to-slate-950" />
+    {[
+      ["12%", "18%"],
+      ["28%", "32%"],
+      ["45%", "12%"],
+      ["68%", "24%"],
+      ["82%", "16%"],
+      ["55%", "42%"],
+      ["22%", "48%"],
+      ["90%", "38%"],
+    ].map(([left, top], i) => (
+      <StarDot
+        key={`${left}-${top}`}
+        className="bg-white"
+        style={{ left, top, animationDelay: `${i * 0.25}s` }}
+        size={i % 3 === 0 ? 3 : 2}
+      />
+    ))}
+    <PlanetSvg className="right-4 top-3" />
+    <div className="absolute left-6 top-8 h-8 w-14 rotate-12 rounded-full bg-indigo-400/20 blur-sm" />
+    <RocketSvg className="bottom-6 left-1/2 h-24 w-16 -translate-x-1/2" />
+    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-indigo-600/25 to-transparent" />
   </>
 );
 
 const CastleScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-amber-100 to-stone-300" />
-    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-emerald-600 to-emerald-400" />
-    <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 items-end gap-1">
-      <div className="h-10 w-8 bg-stone-500" />
-      <div className="relative h-16 w-14 bg-stone-400">
-        <div className="absolute -top-3 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-rose-400" />
-      </div>
-      <div className="h-12 w-9 bg-stone-500" />
-    </div>
-    <div className="theme-flag absolute bottom-16 left-[58%] text-sm">🚩</div>
+    <SceneBackdrop className="bg-gradient-to-b from-sky-400 via-rose-100 to-amber-100" />
+    <Sun className="left-4 top-3 scale-75" />
+    <Cloud className="right-6 top-6 h-8 w-20" />
+    <Cloud className="left-[30%] top-8 h-6 w-14 opacity-80" />
+    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-emerald-600 to-emerald-400" />
+    <CastleSvg className="bottom-6 left-1/2 h-20 w-32 -translate-x-1/2" />
+    <Sparkle className="bottom-[42%] left-[18%] bg-amber-100" />
+    <Sparkle className="bottom-[48%] right-[20%] bg-rose-100" style={{ animationDelay: "0.6s" }} />
   </>
 );
 
 const DinoScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-lime-200 to-amber-300" />
-    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-lime-600 to-lime-400" />
-    <div className="theme-dino absolute bottom-8 left-1/2 -translate-x-1/2 text-5xl">🦕</div>
-    <div className="absolute right-5 top-8 text-2xl opacity-80">🌋</div>
-    <div className="theme-palm absolute bottom-10 left-6 text-2xl">🌴</div>
+    <SceneBackdrop className="bg-gradient-to-b from-sky-400 via-lime-200 to-amber-200" />
+    <Sun className="right-5 top-2 scale-90" />
+    <Cloud className="left-5 top-5 h-7 w-16" />
+    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-lime-700 to-lime-500" />
+    <VolcanoSvg className="right-4 top-6 h-12 w-14" />
+    <TreeSvg variant="right" className="bottom-5 left-3 h-16 w-11 scale-75 opacity-90" />
+    <DinoSvg className="bottom-7 left-1/2 h-20 w-28 -translate-x-1/2" />
+    <Sparkle className="bottom-[45%] left-[20%] bg-yellow-100" />
   </>
 );
 
 const PirateScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-amber-200 via-sky-500 to-cyan-800" />
-    <svg
-      className="theme-wave-layer absolute bottom-0 left-0 h-12 w-[200%] text-sky-600/80"
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
-      <path fill="currentColor" d="M0,72 C300,40 600,96 1200,64 L1200,120 L0,120 Z" />
-    </svg>
-    <div className="theme-ship absolute bottom-10 left-1/2 -translate-x-1/2 text-4xl">🏴‍☠️</div>
-    <div className="theme-treasure absolute bottom-14 right-8 text-xl">💎</div>
+    <SceneBackdrop className="bg-gradient-to-b from-amber-300 via-sky-500 to-cyan-900" />
+    <Sun className="left-5 top-2 scale-75 opacity-90" />
+    <Cloud className="right-8 top-5 h-7 w-16" />
+    <div className="absolute bottom-10 right-6 h-8 w-12 rounded-full bg-amber-200/80" />
+    <div className="absolute bottom-10 right-5 h-5 w-4 rounded-full bg-lime-500" />
+    <ShipSvg className="theme-rock bottom-10 left-1/2 h-20 w-28 -translate-x-1/2" />
+    <TreasureSvg className="bottom-14 right-6 h-8 w-10" />
+    <WaveLayers colors={["text-sky-500/70", "text-cyan-700/80", "text-teal-900"]} />
   </>
 );
 
 const PrincessScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-br from-pink-200 via-rose-200 to-fuchsia-300" />
-    <Sparkle className="left-[20%] top-[25%] bg-pink-100" />
-    <Sparkle className="left-[70%] top-[20%] bg-white" style={{ animationDelay: "0.7s" }} />
-    <div className="theme-crown absolute bottom-10 left-1/2 -translate-x-1/2 text-4xl">👑</div>
-    <div className="absolute bottom-0 left-1/2 h-10 w-24 -translate-x-1/2 rounded-t-full bg-white/30" />
+    <SceneBackdrop className="bg-gradient-to-br from-pink-200 via-rose-200 to-fuchsia-400" />
+    <Sparkle className="left-[18%] top-[22%] bg-pink-100" />
+    <Sparkle className="left-[72%] top-[18%] bg-white" style={{ animationDelay: "0.5s" }} />
+    <Sparkle className="left-[48%] top-[12%] bg-fuchsia-100" style={{ animationDelay: "1s" }} />
+    <StarDot className="left-[30%] top-[30%] bg-rose-200" size={3} />
+    <StarDot className="right-[25%] top-[26%] bg-white" size={2} />
+    <div className="absolute bottom-0 left-1/2 h-12 w-28 -translate-x-1/2 rounded-t-[100%] bg-white/35" />
+    <CastleSvg className="bottom-8 left-1/2 h-14 w-24 -translate-x-1/2 opacity-40" />
+    <CrownSvg className="bottom-10 left-1/2 h-12 w-20 -translate-x-1/2" />
+    <HeartSvg className="bottom-[46%] left-[20%] h-5 w-6 fill-[#f472b6]" />
+    <HeartSvg className="theme-heart-delayed bottom-[42%] right-[18%] h-4 w-5 fill-[#fb7185]" />
   </>
 );
 
 const SuperheroScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-indigo-800 to-red-700" />
-    <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center gap-1 px-4 pb-2 opacity-70">
-      <div className="h-8 w-5 bg-slate-900/80" />
-      <div className="h-12 w-6 bg-slate-900/80" />
-      <div className="h-10 w-5 bg-slate-900/80" />
-      <div className="h-14 w-7 bg-slate-900/80" />
+    <SceneBackdrop className="bg-gradient-to-br from-blue-700 via-indigo-900 to-rose-700" />
+    <StarDot className="left-[15%] top-[20%]" />
+    <StarDot className="right-[20%] top-[15%]" style={{ animationDelay: "0.5s" }} />
+    <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center gap-1.5 px-3 pb-1">
+      {[8, 12, 10, 16, 11, 14].map((h, i) => (
+        <div
+          key={i}
+          className="w-5 rounded-t-sm bg-slate-950/75"
+          style={{ height: `${h * 4}px` }}
+        />
+      ))}
     </div>
-    <div className="theme-hero absolute bottom-10 left-1/2 -translate-x-1/2 text-4xl">🦸</div>
-    <div className="theme-zap absolute right-6 top-8 text-2xl">⚡</div>
+    <div className="absolute bottom-12 left-0 right-0 h-8 bg-gradient-to-t from-yellow-400/20 to-transparent" />
+    <LightningSvg className="right-5 top-6 h-10 w-7" />
+    <LightningSvg className="theme-zap left-4 top-10 h-7 w-5 opacity-70" style={{ animationDelay: "0.4s" }} />
+    <HeroSvg className="bottom-8 left-1/2 h-24 w-16 -translate-x-1/2" />
   </>
 );
 
 const AdventureScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-amber-200 to-orange-300" />
-    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-amber-700 to-lime-500" />
-    <div className="theme-mountain absolute bottom-8 left-6 h-0 w-0 border-b-[48px] border-l-[34px] border-r-[34px] border-b-stone-500 border-l-transparent border-r-transparent opacity-90" />
-    <div className="theme-mountain absolute bottom-8 right-10 h-0 w-0 border-b-[36px] border-l-[28px] border-r-[28px] border-b-stone-600 border-l-transparent border-r-transparent opacity-80" />
-    <div className="theme-compass absolute bottom-12 left-1/2 -translate-x-1/2 text-3xl">🧭</div>
+    <SceneBackdrop className="bg-gradient-to-b from-sky-400 via-amber-200 to-orange-300" />
+    <Sun className="right-4 top-2" />
+    <Cloud className="left-5 top-5 h-7 w-16" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-amber-800 via-lime-600 to-transparent" />
+    <MountainSvg snow className="bottom-8 left-2 h-14 w-20" />
+    <MountainSvg className="bottom-7 right-4 h-12 w-16 opacity-90" />
+    <MountainSvg snow className="bottom-6 left-[38%] h-10 w-14 opacity-80" />
+    <div className="absolute bottom-9 left-1/2 h-1 w-20 -translate-x-1/2 rounded-full bg-amber-900/30" />
+    <CompassSvg className="bottom-10 left-1/2 h-14 w-14 -translate-x-1/2" />
   </>
 );
 
 const FriendshipScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-br from-cyan-100 via-sky-200 to-teal-200" />
-    <div className="theme-heart absolute left-[28%] top-[30%] text-2xl text-rose-400">❤️</div>
-    <div className="theme-heart theme-heart-delayed absolute right-[28%] top-[34%] text-xl text-pink-400">💛</div>
-    <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3 text-3xl">
-      <span className="theme-wave-hand">🧒</span>
-      <span className="theme-wave-hand theme-wave-hand-delayed">👧</span>
-    </div>
+    <SceneBackdrop className="bg-gradient-to-br from-cyan-100 via-sky-200 to-teal-300" />
+    <Cloud className="left-4 top-4 h-7 w-16" />
+    <Cloud className="right-6 top-7 h-6 w-14 opacity-80" />
+    <div className="absolute left-4 right-4 top-[38%] h-1 rounded-full bg-white/40" />
+    <HeartSvg className="left-[22%] top-[24%] h-6 w-7 fill-[#fb7185]" />
+    <HeartSvg className="theme-heart-delayed right-[20%] top-[28%] h-5 w-6 fill-[#fbbf24]" />
+    <HeartSvg className="left-[48%] top-[18%] h-4 w-5 fill-[#f472b6] opacity-80" />
+    <KidsSvg className="bottom-6 left-1/2 h-16 w-28 -translate-x-1/2" />
+    <Sparkle className="bottom-[50%] left-[15%] bg-rose-100" />
+    <Sparkle className="bottom-[48%] right-[14%] bg-sky-100" style={{ animationDelay: "0.7s" }} />
   </>
 );
 
 const CustomThemeScene = () => (
   <>
-    <div className="absolute inset-0 bg-gradient-to-br from-violet-300 via-fuchsia-300 to-cyan-300" />
-    <Sparkle className="left-[15%] top-[20%] bg-white" />
-    <Sparkle className="left-[68%] top-[18%] bg-yellow-100" style={{ animationDelay: "0.5s" }} />
-    <Sparkle className="left-[42%] top-[42%] bg-pink-100" style={{ animationDelay: "1s" }} />
-    <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1">
-      <div className="theme-float rounded-xl bg-white/85 px-4 py-2 text-2xl shadow-md">✏️</div>
-      <div className="h-1 w-16 rounded-full bg-white/70" />
-      <div className="h-1 w-12 rounded-full bg-white/50" />
+    <SceneBackdrop className="bg-gradient-to-br from-violet-300 via-fuchsia-300 to-cyan-300" />
+    <Sparkle className="left-[14%] top-[18%] bg-white" />
+    <Sparkle className="left-[70%] top-[16%] bg-yellow-100" style={{ animationDelay: "0.4s" }} />
+    <Sparkle className="left-[42%] top-[38%] bg-pink-100" style={{ animationDelay: "0.9s" }} />
+    <StarDot className="left-[58%] top-[22%] bg-white" />
+    <BookSvg className="bottom-10 left-[32%] h-12 w-16" />
+    <PencilSvg className="bottom-14 right-[28%] h-10 w-10" />
+    <div className="theme-float absolute bottom-8 right-[18%] flex h-9 w-9 items-center justify-center rounded-full bg-yellow-200/90 text-lg shadow-md">
+      💡
     </div>
-    <div className="theme-float theme-float-delayed absolute right-8 top-10 text-xl">💡</div>
-    <div className="theme-float absolute left-8 top-12 text-lg">✨</div>
+    <div className="absolute bottom-0 left-0 right-0 h-8 bg-white/20" />
   </>
 );
 
@@ -236,11 +273,11 @@ const ThemeIllustration = ({
       )}
     >
       <Scene />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300",
-          "bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.35),transparent_55%)]",
+          "bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.4),transparent_58%)]",
           "group-hover:opacity-100",
           isSelected && "opacity-100",
         )}

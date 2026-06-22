@@ -212,8 +212,50 @@
 .theme-ship,
 .theme-wand,
 .theme-compass,
-.theme-bird {
+.theme-bird,
+.theme-tree,
+.theme-mountain,
+.theme-zap,
+.theme-treasure,
+.theme-flag {
   animation: theme-float 3s ease-in-out infinite;
+}
+
+.theme-rock {
+  animation: theme-rock 4s ease-in-out infinite;
+}
+
+.theme-rocket-flame {
+  animation: theme-flame 0.5s ease-in-out infinite alternate;
+}
+
+.theme-volcano-glow {
+  animation: theme-flame 1.2s ease-in-out infinite alternate;
+}
+
+.theme-magic-trail {
+  animation: theme-glow-breathe 2s ease-in-out infinite;
+}
+
+@keyframes theme-rock {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(2deg);
+  }
+}
+
+@keyframes theme-flame {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
 
 .theme-float-delayed,
