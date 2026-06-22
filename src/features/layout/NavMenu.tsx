@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { X, LogIn, UserPlus, LogOut, User } from "lucide-react";
+import { X, LogIn, UserPlus, LogOut, User, Library } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 
@@ -80,6 +80,15 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
                   <p className="text-xs text-muted-foreground">{user.email}</p>
                 </div>
               </div>
+
+              <button
+                type="button"
+                onClick={() => handleNavigate("/my-stories")}
+                className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-medium text-foreground transition hover:bg-violet-50"
+              >
+                <Library className="size-5 text-violet-500" />
+                My Stories
+              </button>
 
               <button
                 type="button"
