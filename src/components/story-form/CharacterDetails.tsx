@@ -4,14 +4,7 @@ import type {
   UseFormWatch,
   FieldErrors,
 } from "react-hook-form";
-
-interface StoryFormData {
-  childName: string;
-  childAge: string;
-  childGender: string;
-  theme: string;
-  image: FileList;
-}
+import type { StoryFormData } from "@/types/storyForm";
 
 interface CharacterDetailsProps {
   register: UseFormRegister<StoryFormData>;

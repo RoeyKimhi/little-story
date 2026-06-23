@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCurrentStory } from "@/hooks/useCurrentStory";
 import { clearCurrentStory } from "@/lib/storySession";
+import StoryText from "@/components/story-book/StoryText";
 
 const StoryDisplay = () => {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ const StoryDisplay = () => {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-4">
-        <div className="flex flex-col gap-4 md:col-span-1">
+      <div className="grid gap-6 lg:grid-cols-6 lg:gap-8">
+        <div className="flex flex-col gap-4 lg:col-span-1">
           <p className="text-xs font-semibold text-muted-foreground">
             All Pages:
           </p>
@@ -76,8 +77,8 @@ const StoryDisplay = () => {
           </div>
         </div>
 
-        <div className="md:col-span-3">
-          <section className="space-y-6 rounded-lg border border-border bg-card p-6 shadow-sm">
+        <div className="lg:col-span-5">
+          <section className="space-y-6 rounded-lg border border-border bg-card p-4 shadow-sm md:p-6">
             <div className="flex items-center justify-between">
               <div className="text-sm text-muted-foreground">
                 Page {currentPageIndex + 1} of {totalPages}
@@ -102,22 +103,17 @@ const StoryDisplay = () => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-border">
+            <div className="aspect-[4/3] overflow-hidden rounded-xl border border-border">
               <img
                 key={currentPage.pageNumber}
                 src={currentPage.imageUrl}
                 alt={`Page ${currentPage.pageNumber}`}
-                className="w-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
 
-            <div className="rounded-lg border border-border bg-white p-6">
-              <p
-                dir="rtl"
-                className="text-right text-base leading-relaxed text-foreground"
-              >
-                {currentPage.text}
-              </p>
+            <div className="rounded-lg border border-border bg-white p-6 md:p-8">
+              <StoryText text={currentPage.text} />
             </div>
           </section>
         </div>

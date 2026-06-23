@@ -7,6 +7,7 @@ import StoryBook from "./screens/StoryBook";
 import MyStories from "./screens/MyStories";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import StoryCreatingScreen from "./screens/StoryCreatingScreen";
 import { GuestRoute, ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/create" element={<StoryGenerationForm />} />
+            <Route path="/creating" element={<StoryCreatingScreen />} />
             <Route path="/story" element={<StoryDisplay />} />
             <Route path="/book" element={<StoryBook />} />
             <Route path="/my-stories" element={<MyStories />} />
