@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <>
       <header className="w-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 text-white shadow-lg shadow-violet-300/40">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <div className="flex w-full items-center justify-between px-3 py-3 sm:px-4 md:px-5 lg:px-6">
           <div className="flex cursor-pointer items-center gap-3" onClick={() => navigate("/")}>
             <img src="/logo.svg" alt="LittleStory" className="h-8 w-8" />
             <span className="text-lg font-black tracking-wide">LittleStory</span>
