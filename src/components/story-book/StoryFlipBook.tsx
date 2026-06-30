@@ -63,25 +63,32 @@ const StoryFlipBook = ({ story }: StoryFlipBookProps) => {
           <FlipPage key={`text-${page.pageNumber}`}>
             <div
               dir="rtl"
-              className="flex h-full w-full flex-col justify-center bg-white px-6 py-8 md:px-10 md:py-10"
+              className="flex h-full w-full flex-col items-center justify-center bg-white px-6 py-8 text-center md:px-10 md:py-10"
             >
-              <StoryText text={page.text} />
-              <span className="mt-8 text-left text-xs text-muted-foreground">
+              <StoryText
+                text={page.text}
+                className="items-center text-center"
+                sentenceClassName="text-center"
+              />
+              <span className="mt-8 text-xs text-muted-foreground">
                 {page.pageNumber}
               </span>
             </div>
           </FlipPage>,
         ])}
 
-        {/* Back cover */}
+        {/* Minimal closing page (keeps the spreads aligned, no blank page) */}
         <FlipPage hard>
           <div
             dir="rtl"
-            className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-500 px-8 text-center text-white"
+            className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-violet-50 via-white to-fuchsia-50 px-8 text-center"
           >
-            <img src="/logo.svg" alt="LittleStory" className="mb-6 h-16 w-16" />
-            <p className="text-3xl font-black">הסוף</p>
-            <p className="mt-4 text-sm text-white/90">תודה שקראתם את הסיפור</p>
+            <img
+              src="/logo.svg"
+              alt="LittleStory"
+              className="mb-4 h-12 w-12 opacity-80"
+            />
+            <p className="text-sm font-semibold text-violet-400">LittleStory</p>
           </div>
         </FlipPage>
       </HTMLFlipBook>

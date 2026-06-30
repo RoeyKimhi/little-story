@@ -7,6 +7,7 @@ export interface StoryPage {
 }
 
 export interface StoryResponse {
+  id?: string;
   message: string;
   receivedImage: boolean;
   title: string;
